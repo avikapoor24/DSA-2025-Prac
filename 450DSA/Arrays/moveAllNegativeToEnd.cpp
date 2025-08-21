@@ -5,37 +5,35 @@ class Solution {
   public:
     void segregateElements(vector<int>& arr) {
         // Your code goes here
-        long long n = arr.size(); //
+       int n = arr.size();
+       vector<int> temp(n);
+       int co=0;
+       
+       // Store all Positive in Temp
+       for(int i=0; i<n; i++)
+       {
+           if(arr[i] >= 0)
+           {
+               temp[co] = arr[i];
+               co++;
+           }
+       }
+       
+       //Store all Negative in Temp
+       for(int i=0; i<n; i++)
+       {
+           if(arr[i] < 0)
+           {
+               temp[co] = arr[i];
+               co++;
+           }
+       }
         
-        vector<int> temp(n);
-        long long co=0;
         
-        //store positive in temp
-        for(int i=0;i<n;i++) 
-        {
-            if(arr[i] >= 0)
-            {
-                temp[co] = arr[i];
-                co++;
-            }
-        }
-        
-        //store negative in temp
-        for(int i=0;i<n;i++)
-        {
-            if(arr[i] < 0)
-            {
-                temp[co] = arr[i];
-                co++;
-            }
-        }
-        
-        //copy temp in arr
-        for(int i=0;i<n;i++)
-        {
+        //Copy temp to arr
+        for(int i=0;i<n;i++){
             arr[i] = temp[i];
         }
-        
         
     }
 };
