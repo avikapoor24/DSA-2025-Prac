@@ -13,3 +13,31 @@ Note:  Return -1 if you can't reach the end of the array.
 */
 // Link, https://www.geeksforgeeks.org/problems/minimum-number-of-jumps-1587115620/1
 
+class Solution {
+  public:
+    int minJumps(vector<int>& arr) {
+        int n = arr.size();
+        
+        if (n <= 1) return 0;        // already at the end
+        if (arr[0] == 0) return -1;  // cannot move anywhere
+        
+        int maxReach = arr[0]; // farthest index reachable
+        int steps = arr[0];    // steps we can still take
+        int jumps = 1;         // first jump taken
+        
+        for (int i = 1; i < n; i++) {
+            if (i == n - 1) return jumps; // reached end
+            
+            maxReach = max(maxReach, i + arr[i]);
+            steps--; // used one step
+            
+            if (steps == 0) {
+                jumps++;
+                if (i >= maxReach) return -1; // stuck
+                steps = maxReach - i;
+            }
+        }
+        
+        return -1;
+    }
+};
